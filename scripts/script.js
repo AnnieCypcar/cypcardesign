@@ -9,11 +9,11 @@ $(document).ready(function(){
     var paraScroll = function (ypos, inertia) {
         function newPos(ypos, inertia, height, spos, i){
             if (i === 0 || i === 1) {
-                return Math.round((-((height * 0.5 + spos) - ypos) * inertia)) - 183 + "px";
-            } else if (i === $(frameArray).length) {
-                return Math.round((-((height * 0.5 + spos) - ypos) * inertia)) + 146  + "px";
+                return Math.round((-((height + spos) - ypos) * inertia)) - 116 + "px";
+            } else if (i === ($(frameArray).length - 1)) {
+                return Math.round((-((height + spos) - ypos) * inertia)) + 170  + "px";
             } else {
-                return Math.round((-((height * 0.5 + spos) - ypos) * inertia)) + "px";
+                return Math.round((-((height/2 + spos) - ypos) * inertia)) + "px";
             }
         }
 
@@ -39,17 +39,17 @@ $(document).ready(function(){
 
     document.getElementsByClassName('navbtns')[2].onclick = function (e) {
         e.preventDefault();
-        scrollTo(document.body, 2700, 1250);
+        scrollTo(document.body, 2500, 1250);
     };
 
     document.getElementsByClassName('navbtns')[3].onclick = function (e) {
         e.preventDefault();
-        scrollTo(document.body, 3700, 1250);
+        scrollTo(document.body, 3630, 1250);
     };
 
     document.getElementsByClassName('navbtns')[4].onclick = function (e) {
         e.preventDefault();
-        scrollTo(document.body, 4700, 1250);
+        scrollTo(document.body, 4600, 1250);
     };
 
     document.getElementsByClassName('navbtns')[5].onclick = function (e) {
@@ -76,6 +76,7 @@ $(document).ready(function(){
             currentTime += increment;
             var val = Math.easeInOutQuad(currentTime, start, change, duration);
             element.scrollTop = val;
+
             if(currentTime < duration) {
                 setTimeout(animateScroll, increment);
             }
