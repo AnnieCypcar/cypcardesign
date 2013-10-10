@@ -1,44 +1,97 @@
-(function( $ ){
-    $.fn.paraScroll = function(xpos, ypos, inertia) {
-        var $this = $(this);
+$(document).ready(function(){
+    var frameArray = $('.frame');
 
-        if (typeof xpos === 'undefined') {
-            xpos = "50%";
-        }
-        if (typeof ypos === 'undefined') {
-            ypos = 0;
-        }
-        if (typeof inertia === 'undefined') {
-            inertia = 0.1;
-        }
-
-        function newPos(xpos, height, spos, ypos, inertia){
-            return xpos + Math.round((-((height + spos) - ypos) * inertia)) + "px";
-        }
-
-        function move(xpos, height, spos, ypos, inertia){
-            $this.css({'background-position': newPos(xpos, height, spos, ypos, inertia)});
+    var paraScroll = function (ypos, inertia) {
+        function newPos(ypos, inertia, height, spos, i){
+            if (i === 0 || i === 1) {
+                return Math.round((-((height * 0.5 + spos) - ypos) * inertia)) - 183 + "px";
+            } else if (i === $(frameArray).length) {
+                return Math.round((-((height * 0.5 + spos) - ypos) * inertia)) + 146  + "px";
+            } else {
+                return Math.round((-((height * 0.5 + spos) - ypos) * inertia)) + "px";
+            }
         }
 
         $(window).on('scroll', function(){
-            var spos = $(window).scrollTop();
+            $.each(frameArray, function(i){
+                var spos = $(window).scrollTop();
+                var height = $(frameArray[i]).height();
 
-            $this.each(function(){
-                var height = $this.height();
-                move(xpos, height, spos, ypos, inertia);
+                $(frameArray[i]).css({'background-position-y': newPos(ypos, inertia, height, spos, i)});
             });
         });
     };
-})( jQuery );
 
-$(document).ready(function(){
-    var repositionNav = function (){
-        var windowHeight = $(window).height();
-        var navHeight = $('#nav').height() / 2;
-        var windowCenter = (windowHeight / 2);
-        var newtop = windowCenter - navHeight;
-        $('#nav').css({"top": newtop});
+    document.getElementsByClassName('navbtns')[0].onclick = function (e) {
+        e.preventDefault();
+        scrollTo(document.body, 0, 1250);
     };
+
+    document.getElementsByClassName('navbtns')[1].onclick = function (e) {
+        e.preventDefault();
+        scrollTo(document.body, 1500, 1250);
+    };
+
+    document.getElementsByClassName('navbtns')[2].onclick = function (e) {
+        e.preventDefault();
+        scrollTo(document.body, 2700, 1250);
+    };
+
+    document.getElementsByClassName('navbtns')[3].onclick = function (e) {
+        e.preventDefault();
+        scrollTo(document.body, 3700, 1250);
+    };
+
+    document.getElementsByClassName('navbtns')[4].onclick = function (e) {
+        e.preventDefault();
+        scrollTo(document.body, 4700, 1250);
+    };
+
+    document.getElementsByClassName('navbtns')[5].onclick = function (e) {
+        e.preventDefault();
+        scrollTo(document.body, 5700, 1250);
+    };
+
+    function repositionNav () {
+        var windowHeight = $(window).height(),
+        navHeight = $('#nav').height() / 2,
+        windowCenter = (windowHeight / 2),
+        newtop = windowCenter - navHeight;
+
+        $('#nav').css({"top": newtop});
+    }
+
+    function scrollTo (element, to, duration) {
+        var start = element.scrollTop,
+            change = to - start,
+            currentTime = 0,
+            increment = 20;
+
+        var animateScroll = function () {
+            currentTime += increment;
+            var val = Math.easeInOutQuad(currentTime, start, change, duration);
+            element.scrollTop = val;
+            if(currentTime < duration) {
+                setTimeout(animateScroll, increment);
+            }
+        };
+        animateScroll();
+    }
+
+//  t = current time
+//  b = start value
+//  c = change in value
+//  d = duration
+    Math.easeInOutQuad = function (t, b, c, d) {
+        t /= d/2;
+        if (t < 1) return c/2*t*t + b;
+        t--;
+        return -c/2 * (t*(t-2) - 1) + b;
+    };
+
+    $.each(frameArray, function (y) {
+        paraScroll(y * 500, 0.1);
+    });
 
     repositionNav();
 
@@ -47,15 +100,4 @@ $(document).ready(function(){
     });
 
     $('#no-script').remove();
-    $('#intro').paraScroll("50%", 350);
-    $('#second').paraScroll("50%", 2072);
-    $('#third').paraScroll("50%", 2700);
-    $('#show').paraScroll("50%", 4016);
-    $('#fourth').paraScroll("50%", 5238);
-    $('#fifth').paraScroll("50%", 6216);
 });
-
-
-//BackgroundCheck.init({
-//    targets: '.target'
-//});
