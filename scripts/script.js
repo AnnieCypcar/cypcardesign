@@ -1,3 +1,8 @@
+//  paraScroll  version 0.1.0
+//  Parallax Scrolling for Cypcar Design
+//  © Annie Cypcar
+//  "http://cypcardesign.com/
+
 $(document).ready(function(){
     var frameArray = $('.frame');
 
@@ -78,15 +83,12 @@ $(document).ready(function(){
         animateScroll();
     }
 
-//  t = current time
-//  b = start value
-//  c = change in value
-//  d = duration
+//  t = current time, b = start value, c = change in value, d = duration
     Math.easeInOutQuad = function (t, b, c, d) {
         t /= d/2;
-        if (t < 1) return c/2*t*t + b;
-        t--;
-        return -c/2 * (t*(t-2) - 1) + b;
+        if (t < 1) return c/2 * t * t + b;
+        t --;
+        return -c/2 * (t * (t - 2) - 1) + b;
     };
 
     $.each(frameArray, function (y) {
