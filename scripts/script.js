@@ -1,7 +1,8 @@
-//  paraScroll  version 0.1.0
-//  Parallax Scrolling for Cypcar Design
-//  © Annie Cypcar
-//  "http://cypcardesign.com/
+/*  paraScroll  version 0.1.0
+    Parallax Scrolling for Cypcar Design
+    © Annie Cypcar
+    "http://cypcardesign.com
+*/
 
 $(document).ready(function(){
     var frameArray = $('.frame');

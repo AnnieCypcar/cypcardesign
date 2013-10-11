@@ -77,11 +77,11 @@ h2{
 }
 
 h2:hover, h2:active, h2:focus{
-	color: #202a54;
+	color: #2c4054;;
 	text-decoration: none;
 }
 h3, h3 a:link, h3 a:active, h3 a:focus, h3 a:visited {
-	color: #202a54;
+	color: #2c4054;;
 	font-family:"Beau Sans Pro Book", Verdana, sans-serif;
 	font-size:14px;
 	font-weight:300;
@@ -94,7 +94,7 @@ a:link, a:active, a:focus, a:visited {
 }
 
 a:hover {
-	color: #202a54;
+	color: #2c4054;
 	text-decoration: none;
 }
 
