@@ -22,11 +22,12 @@ p, p a{
 	color: #fff;
 }
 
-p, ul{
+p {
 	font-family:"Beau Sans Pro Book", Verdana, sans-serif;
 	font-size:12px;
-	font-weight:300;
+	font-weight:500;
 	font-style:normal;
+    letter-spacing: 1px;
 }
 
 img{
@@ -40,9 +41,9 @@ a:link, a:active, a:focus, a:visited {
 h1{
 	font-family:"Beau Sans Pro Book", Verdana, sans-serif;
 	font-size:32px;
-	font-weight:500;
+	font-weight:700;
 	font-style:normal;
-	color: white;
+	color: #fff;
 }
 
 h2{
@@ -103,13 +104,16 @@ h3, h3 a:link, h3 a:active, h3 a:focus, h3 a:visited {
 
 #nav.dark li a,
 #nav.light li a:hover{
-    color: #202a54 !important;
+    color: #244b9e;
     font-weight: 700;
+    letter-spacing: 1px;
 }
 
 #nav.dark li a:hover,
 #nav.light li a {
-    color: #fff !important;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 #nav li{
@@ -118,14 +122,6 @@ h3, h3 a:link, h3 a:active, h3 a:focus, h3 a:visited {
 	font-size:12px;
 	font-weight:300;
 	font-style:normal;
-}
-
-li .white {
-	color: #fff;
-}
-
-li .blue {
-	color: #202a54;
 }
 
 #intro, #second, #third, #fourth, #fifth{
@@ -216,5 +212,5 @@ div.light_logo.on {
 .story .float-left, .story .float-right{
 	padding-top: 47%;
 	position: relative;
-	width: 420px;	
+	width: 425px;
 }
