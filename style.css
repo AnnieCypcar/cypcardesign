@@ -17,7 +17,7 @@ body{
     font-size: 100%;
 }
 
-p{
+p, p a{
 	margin: 0 0 20px 0;	
 	color: #fff;
 }
@@ -33,37 +33,16 @@ img{
 	border: none;
 }
 
-#preloaded-images {
-   position: absolute;
-   overflow: hidden;
-   left: -9999px; 
-   top: -9999px;
-   height: 1px;
-   width: 1px;
+a:link, a:active, a:focus, a:visited {
+    text-decoration: none;
 }
 
 h1{
 	font-family:"Beau Sans Pro Book", Verdana, sans-serif;
 	font-size:32px;
-	font-weight:550;
+	font-weight:500;
 	font-style:normal;
 	color: white;
-}
-
-.float-left{
-	float: left;	
-	margin: 0 0 0 20px;
-}
-
-.float-right{
-	float: right;
-	margin: 0 20px 0 0;
-}
-
-.center{
-	font-size: 1em;
-	padding: 100px 0 0 0;
-	text-align: center;
 }
 
 h2{
@@ -71,31 +50,43 @@ h2{
 	font-size:14px;
 	font-weight:300;
 	font-style:normal;
-	color: white;
-	color: #fff;
+    color: #fff;
 	text-decoration: none;
 }
 
-h2:hover, h2:active, h2:focus{
-	color: #2c4054;;
-	text-decoration: none;
-}
 h3, h3 a:link, h3 a:active, h3 a:focus, h3 a:visited {
-	color: #2c4054;;
 	font-family:"Beau Sans Pro Book", Verdana, sans-serif;
 	font-size:14px;
 	font-weight:300;
 	font-style:normal;
-	text-decoration: none;
-}
-a:link, a:active, a:focus, a:visited {
-	color: #fff;
+    color: #fff;
 	text-decoration: none;
 }
 
-a:hover {
-	color: #2c4054;
-	text-decoration: none;
+.float-left{
+    float: left;
+    margin: 0 0 0 20px;
+}
+
+.float-right{
+    float: right;
+    margin: 0 20px 0 0;
+}
+
+.center{
+    font-size: 1em;
+    padding: 100px 0 0 0;
+    text-align: center;
+}
+
+
+#preloaded-images {
+    position: absolute;
+    overflow: hidden;
+    left: -9999px;
+    top: -9999px;
+    height: 1px;
+    width: 1px;
 }
 
 #nav{
@@ -110,10 +101,21 @@ a:hover {
     padding:0;
 }
 
+#nav.dark li a,
+#nav.light li a:hover{
+    color: #202a54 !important;
+    font-weight: 700;
+}
+
+#nav.dark li a:hover,
+#nav.light li a {
+    color: #fff !important;
+}
+
 #nav li{
 	margin: 0 0 10px 0;	
 	font-family:"Beau Sans Pro Book", Verdana, sans-serif;
-	font-size:10px;
+	font-size:12px;
 	font-weight:300;
 	font-style:normal;
 }
@@ -137,12 +139,14 @@ li .blue {
     z-index: 9999;
 }
 
-.on {
-    display: block;
+div.light_logo.off,
+div.dark_logo.off {
+    display: none;
 }
 
-.off {
-    display: none;
+div.dark_logo.on,
+div.light_logo.on {
+    display: block;
 }
 
 #intro{

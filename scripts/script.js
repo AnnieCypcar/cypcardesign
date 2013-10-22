@@ -19,10 +19,18 @@ $(document).ready(function(){
         }
 
         function toggleLogo(spos) {
-            if (spos > 1500 && spos < 4485) {
-                switchToDark();
+            if (spos > 1312 && spos < 4485) {
+                switchToDarkLogo();
             } else {
-                switchToLight();
+                switchToLightLogo();
+            }
+        }
+
+        function toggleText(spos) {
+            if (spos > 1800 && spos < 3136) {
+                switchToLightText();
+            } else {
+                switchToDarkText();
             }
         }
 
@@ -33,11 +41,12 @@ $(document).ready(function(){
 
                 $(frameArray[i]).css({'background-position-y': newPos(ypos, inertia, height, spos, i)});
                 toggleLogo(spos);
+                toggleText(spos);
             });
         });
     };
 
-    function switchToLight() {
+    function switchToLightLogo() {
         if ($('.light_logo').hasClass('off')) {
             $('.light_logo').toggleClass('on').toggleClass('off');
         }
@@ -46,12 +55,24 @@ $(document).ready(function(){
         }
     }
 
-    function switchToDark() {
+    function switchToDarkLogo() {
         if ($('.light_logo').hasClass('on')) {
             $('.light_logo').toggleClass('on').toggleClass('off');
         }
         if ($('.dark_logo').hasClass('off')) {
             $('.dark_logo').toggleClass('off').toggleClass('on');
+        }
+    }
+
+    function switchToLightText() {
+         if ($('#nav').hasClass('light')) {
+             $('#nav').toggleClass('light').toggleClass('dark');
+         }
+    }
+
+    function switchToDarkText() {
+        if ($('#nav').hasClass('dark')) {
+            $('#nav').toggleClass('light').toggleClass('dark');
         }
     }
 
