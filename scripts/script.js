@@ -11,8 +11,10 @@ $(document).ready(function(){
         function newPos(ypos, inertia, height, spos, i){
             if (i === 0 || i === 1) {
                 return Math.round((-((height + spos) - ypos) * inertia)) - 116 + "px";
+            } else if (i === ($(frameArray).length - 2)) {
+                return Math.round((-((height + spos) - ypos) * inertia)) + 120  + "px";
             } else if (i === ($(frameArray).length - 1)) {
-                return Math.round((-((height + spos) - ypos) * inertia)) + 170  + "px";
+                return Math.round((-((height + spos) - ypos) * inertia)) + 230  + "px";
             } else {
                 return Math.round((-((height/2 + spos) - ypos) * inertia)) + "px";
             }
@@ -83,27 +85,27 @@ $(document).ready(function(){
 
     document.getElementsByClassName('navbtns')[1].onclick = function (e) {
         e.preventDefault();
-        scrollTo(document.body, 1500, 1250);
+        scrollTo(document.body, 1400, 1250);
     };
 
     document.getElementsByClassName('navbtns')[2].onclick = function (e) {
         e.preventDefault();
-        scrollTo(document.body, 2500, 1250);
+        scrollTo(document.body, 2400, 1250);
     };
 
     document.getElementsByClassName('navbtns')[3].onclick = function (e) {
         e.preventDefault();
-        scrollTo(document.body, 3630, 1250);
+        scrollTo(document.body, 3500, 1250);
     };
 
     document.getElementsByClassName('navbtns')[4].onclick = function (e) {
         e.preventDefault();
-        scrollTo(document.body, 4600, 1250);
+        scrollTo(document.body, 4500, 1250);
     };
 
     document.getElementsByClassName('navbtns')[5].onclick = function (e) {
         e.preventDefault();
-        scrollTo(document.body, 5700, 1250);
+        scrollTo(document.body, 5500, 1250);
     };
 
     function repositionNav () {
