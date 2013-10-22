@@ -130,11 +130,19 @@ li .blue {
 	width: 100%;
 }
 
-#masthead{
+#masthead {
 	position: fixed;
     margin: 15px 0 0 20px;
     padding: 0;
     z-index: 9999;
+}
+
+.on {
+    display: block;
+}
+
+.off {
+    display: none;
 }
 
 #intro{

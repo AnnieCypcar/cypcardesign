@@ -18,15 +18,42 @@ $(document).ready(function(){
             }
         }
 
+        function toggleLogo(spos) {
+            if (spos > 1500 && spos < 4485) {
+                switchToDark();
+            } else {
+                switchToLight();
+            }
+        }
+
         $(window).on('scroll', function(){
             $.each(frameArray, function(i){
                 var spos = $(window).scrollTop();
                 var height = $(frameArray[i]).height();
 
                 $(frameArray[i]).css({'background-position-y': newPos(ypos, inertia, height, spos, i)});
+                toggleLogo(spos);
             });
         });
     };
+
+    function switchToLight() {
+        if ($('.light_logo').hasClass('off')) {
+            $('.light_logo').toggleClass('on').toggleClass('off');
+        }
+        if ($('.dark_logo').hasClass('on')) {
+            $('.dark_logo').toggleClass('off').toggleClass('on');
+        }
+    }
+
+    function switchToDark() {
+        if ($('.light_logo').hasClass('on')) {
+            $('.light_logo').toggleClass('on').toggleClass('off');
+        }
+        if ($('.dark_logo').hasClass('off')) {
+            $('.dark_logo').toggleClass('off').toggleClass('on');
+        }
+    }
 
     document.getElementsByClassName('navbtns')[0].onclick = function (e) {
         e.preventDefault();
