@@ -21,7 +21,7 @@ $(document).ready(function(){
         }
 
         function toggleLogo(spos) {
-            if (spos > 1312 && spos < 4485) {
+            if (spos > 1312 && spos < 4885) {
                 switchToDarkLogo();
             } else {
                 switchToLightLogo();
