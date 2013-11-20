@@ -28,14 +28,6 @@ $(document).ready(function(){
             }
         }
 
-        function toggleText(spos) {
-            if (spos > 1800 && spos < 3136) {
-                switchToLightText();
-            } else {
-                switchToDarkText();
-            }
-        }
-
         $(window).on('scroll', function(){
             $.each(frameArray, function(i){
                 var spos = $(window).scrollTop();
@@ -43,7 +35,6 @@ $(document).ready(function(){
 
                 $(frameArray[i]).css({'background-position-y': newPos(ypos, inertia, height, spos, i)});
                 toggleLogo(spos);
-                toggleText(spos);
             });
         });
     };
@@ -63,18 +54,6 @@ $(document).ready(function(){
         }
         if ($('.dark_logo').hasClass('off')) {
             $('.dark_logo').toggleClass('off').toggleClass('on');
-        }
-    }
-
-    function switchToLightText() {
-         if ($('#nav').hasClass('light')) {
-             $('#nav').toggleClass('light').toggleClass('dark');
-         }
-    }
-
-    function switchToDarkText() {
-        if ($('#nav').hasClass('dark')) {
-            $('#nav').toggleClass('light').toggleClass('dark');
         }
     }
 
