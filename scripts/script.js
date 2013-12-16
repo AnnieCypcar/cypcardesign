@@ -19,7 +19,7 @@ $(document).ready(function(){
         ];
 
         var scroll_on_click = function () {
-            var selected_button_index = $('li').index(this);
+            var selected_button_index = $('nav li').index(this);
             
             scroll_to(document.body, navButtonYValue[selected_button_index], 1250);
 
