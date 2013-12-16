@@ -5,17 +5,15 @@ Parallax Scrolling for Cypcar Design
 */
 
 var assign_button_click_events = function () {
-
-    var buttons = $('nav li');
-
-    var navButtonYValue = [
+    var buttons = $('nav li'),
+        navButtonYValue = [
         0,
         1400,
         2400,
         3500,
         4500,
         5500
-    ];
+        ];
 
     var scroll_on_click = function () {
         var selected_button_index = $('nav li').index(this);
@@ -65,21 +63,19 @@ var paraScroll = function (ypos, inertia) {
     });
 };
 
+$.each(frameArray, function (y) {
+    paraScroll(y * 500, 0.1);
+});
+
 function switchToLightLogo() {
-    if ($('.light_logo').hasClass('off')) {
-        $('.light_logo').toggleClass('on').toggleClass('off');
-    }
-    if ($('.dark_logo').hasClass('on')) {
-        $('.dark_logo').toggleClass('off').toggleClass('on');
+    if ($('.light_logo').hasClass('off') && $('.dark_logo').hasClass('on')) {
+        $('.light_logo, .dark_logo').toggleClass('on').toggleClass('off');
     }
 }
 
 function switchToDarkLogo() {
-    if ($('.light_logo').hasClass('on')) {
-        $('.light_logo').toggleClass('on').toggleClass('off');
-    }
-    if ($('.dark_logo').hasClass('off')) {
-        $('.dark_logo').toggleClass('off').toggleClass('on');
+    if ($('.light_logo').hasClass('on') && $('.dark_logo').hasClass('off')) {
+        $('.light_logo, .dark_logo').toggleClass('on').toggleClass('off');
     }
 }
 
@@ -116,10 +112,6 @@ function scroll_to (element, to, duration) {
     };
     animateScroll();
 }
-
-$.each(frameArray, function (y) {
-    paraScroll(y * 500, 0.1);
-});
 
 repositionNav();
 
