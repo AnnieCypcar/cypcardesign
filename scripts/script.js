@@ -57,43 +57,43 @@ $(document).ready(function(){
         }
     }
 
-    document.getElementsByClassName('navbtns')[0].onclick = function (e) {
+    $('.navbtns li')[0].onclick = function (e) {
         e.preventDefault();
         scrollTo(document.body, 0, 1250);
     };
 
-    document.getElementsByClassName('navbtns')[1].onclick = function (e) {
+    $('.navbtns li')[1].onclick = function (e) {
         e.preventDefault();
         scrollTo(document.body, 1400, 1250);
     };
 
-    document.getElementsByClassName('navbtns')[2].onclick = function (e) {
+    $('.navbtns li')[2].onclick = function (e) {
         e.preventDefault();
         scrollTo(document.body, 2400, 1250);
     };
 
-    document.getElementsByClassName('navbtns')[3].onclick = function (e) {
+    $('.navbtns li')[3].onclick = function (e) {
         e.preventDefault();
         scrollTo(document.body, 3500, 1250);
     };
 
-    document.getElementsByClassName('navbtns')[4].onclick = function (e) {
+    $('.navbtns li')[4].onclick = function (e) {
         e.preventDefault();
         scrollTo(document.body, 4500, 1250);
     };
 
-    document.getElementsByClassName('navbtns')[5].onclick = function (e) {
+    $('.navbtns li')[5].onclick = function (e) {
         e.preventDefault();
         scrollTo(document.body, 5500, 1250);
     };
 
     function repositionNav () {
         var windowHeight = $(window).height(),
-        navHeight = $('#nav').height() / 2,
+        navHeight = $('nav').height() / 2,
         windowCenter = (windowHeight / 2),
         newtop = windowCenter - navHeight;
 
-        $('#nav').css({"top": newtop});
+        $('nav').css({"top": newtop});
     }
 
     function scrollTo (element, to, duration) {
