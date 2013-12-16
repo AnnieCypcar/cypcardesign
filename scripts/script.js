@@ -5,6 +5,33 @@
 */
 
 $(document).ready(function(){
+    var assign_button_click_events = function () {
+
+        var buttons = $('.navbtns li');
+
+        var navButtonYValue = [
+            0,
+            1400,
+            2400,
+            3500,
+            4500,
+            5500
+        ];
+
+        var scroll_on_click = function () {
+            var selected_button_index = $('li').index(this);
+            
+            scroll_to(document.body, navButtonYValue[selected_button_index], 1250);
+
+            return false;
+        };
+
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].onclick = scroll_on_click;
+        }
+    };
+    assign_button_click_events();
+
     var frameArray = $('.frame');
 
     var paraScroll = function (ypos, inertia) {
@@ -57,36 +84,6 @@ $(document).ready(function(){
         }
     }
 
-    $('.navbtns li')[0].onclick = function (e) {
-        e.preventDefault();
-        scrollTo(document.body, 0, 1250);
-    };
-
-    $('.navbtns li')[1].onclick = function (e) {
-        e.preventDefault();
-        scrollTo(document.body, 1400, 1250);
-    };
-
-    $('.navbtns li')[2].onclick = function (e) {
-        e.preventDefault();
-        scrollTo(document.body, 2400, 1250);
-    };
-
-    $('.navbtns li')[3].onclick = function (e) {
-        e.preventDefault();
-        scrollTo(document.body, 3500, 1250);
-    };
-
-    $('.navbtns li')[4].onclick = function (e) {
-        e.preventDefault();
-        scrollTo(document.body, 4500, 1250);
-    };
-
-    $('.navbtns li')[5].onclick = function (e) {
-        e.preventDefault();
-        scrollTo(document.body, 5500, 1250);
-    };
-
     function repositionNav () {
         var windowHeight = $(window).height(),
         navHeight = $('nav').height() / 2,
@@ -96,7 +93,14 @@ $(document).ready(function(){
         $('nav').css({"top": newtop});
     }
 
-    function scrollTo (element, to, duration) {
+    function scroll_to (element, to, duration) {
+        //  t = current time, b = start value, c = change in value, d = duration
+        var math_easing = function (t, b, c, d) {
+            t /= d/2;
+            if (t < 1) return c/2 * t * t + b;
+            t --;
+            return -c/2 * (t * (t - 2) - 1) + b;
+        };
         var start = element.scrollTop,
             change = to - start,
             currentTime = 0,
@@ -104,7 +108,7 @@ $(document).ready(function(){
 
         var animateScroll = function () {
             currentTime += increment;
-            var val = Math.easeInOutQuad(currentTime, start, change, duration);
+            var val = math_easing(currentTime, start, change, duration);
             element.scrollTop = val;
 
             if(currentTime < duration) {
@@ -113,14 +117,6 @@ $(document).ready(function(){
         };
         animateScroll();
     }
-
-//  t = current time, b = start value, c = change in value, d = duration
-    Math.easeInOutQuad = function (t, b, c, d) {
-        t /= d/2;
-        if (t < 1) return c/2 * t * t + b;
-        t --;
-        return -c/2 * (t * (t - 2) - 1) + b;
-    };
 
     $.each(frameArray, function (y) {
         paraScroll(y * 500, 0.1);
