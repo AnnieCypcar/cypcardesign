@@ -47,9 +47,9 @@ var paraScroll = function (ypos, inertia) {
     function toggleLogo(spos) {
         if (spos > 1312 && spos < 4885) {
             switchToDarkLogo();
-        } else {
-            switchToLightLogo();
+            return false;
         }
+        switchToLightLogo();
     }
 
     $(window).on('scroll', function(){
