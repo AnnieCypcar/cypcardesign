@@ -7,7 +7,7 @@
 $(document).ready(function(){
     var assign_button_click_events = function () {
 
-        var buttons = $('.navbtns li');
+        var buttons = $('nav li');
 
         var navButtonYValue = [
             0,
