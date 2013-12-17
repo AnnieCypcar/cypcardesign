@@ -1,4 +1,4 @@
-/*  paraScroll  version 0.1.0
+/*  paraScroll  version 0.2.0
 Parallax Scrolling for Cypcar Design
 © Annie Cypcar
 "http://cypcardesign.com
