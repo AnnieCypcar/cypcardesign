@@ -27,45 +27,14 @@ var assign_button_click_events = function () {
         buttons[i].onclick = scroll_on_click;
     }
 };
-assign_button_click_events();
 
-var frameArray = $('.frame');
-
-var paraScroll = function (ypos, inertia) {
-    function newPos(ypos, inertia, height, spos, i){
-        if (i === 0 || i === 1) {
-            return Math.round((-((height + spos) - ypos) * inertia)) - 116 + "px";
-        } else if (i === ($(frameArray).length - 2)) {
-            return Math.round((-((height + spos) - ypos) * inertia)) + 120  + "px";
-        } else if (i === ($(frameArray).length - 1)) {
-            return Math.round((-((height + spos) - ypos) * inertia)) + 230  + "px";
-        } else {
-            return Math.round((-((height/2 + spos) - ypos) * inertia)) + "px";
-        }
+function toggle_logo(scroll_position) {
+    if (scroll_position > 1312 && scroll_position < 4885) {
+        switchToDarkLogo();
+        return false;
     }
-
-    function toggleLogo(spos) {
-        if (spos > 1312 && spos < 4885) {
-            switchToDarkLogo();
-            return false;
-        }
-        switchToLightLogo();
-    }
-
-    $(window).on('scroll', function(){
-        $.each(frameArray, function(i){
-            var spos = $(window).scrollTop();
-            var height = $(frameArray[i]).height();
-
-            $(frameArray[i]).css({'background-position-y': newPos(ypos, inertia, height, spos, i)});
-            toggleLogo(spos);
-        });
-    });
-};
-
-$.each(frameArray, function (y) {
-    paraScroll(y * 500, 0.1);
-});
+    switchToLightLogo();
+}
 
 function switchToLightLogo() {
     if ($('.light_logo').hasClass('off') && $('.dark_logo').hasClass('on')) {
@@ -79,7 +48,7 @@ function switchToDarkLogo() {
     }
 }
 
-function repositionNav () {
+function reposition_nav () {
     var windowHeight = $(window).height(),
     navHeight = $('nav').height() / 2,
     windowCenter = (windowHeight / 2),
@@ -98,25 +67,52 @@ function scroll_to (element, to, duration) {
     };
     var start = element.scrollTop,
         change = to - start,
-        currentTime = 0,
+        current_time = 0,
         increment = 20;
 
-    var animateScroll = function () {
-        currentTime += increment;
-        var val = math_easing(currentTime, start, change, duration);
+    var animate_scroll = function () {
+        current_time += increment;
+        var val = math_easing(current_time, start, change, duration);
         element.scrollTop = val;
 
-        if(currentTime < duration) {
-            setTimeout(animateScroll, increment);
+        if (current_time < duration) {
+            setTimeout(animate_scroll, increment);
         }
     };
-    animateScroll();
+
+    animate_scroll();
 }
 
-repositionNav();
-
 $(window).resize(function(){
-    repositionNav();
+    reposition_nav();
+});
+
+$(window).on('scroll', function(){
+    var scroll_position = $(window).scrollTop();
+    var inertia = 0.5;
+    var frame_array = $('.frame');
+
+    //fine tune background image placement
+    for (var i = 0; i < frame_array.length; i++) {
+        var adjustment = [
+            334,
+            800,
+            1400,
+            1800,
+            2400,
+            2800
+        ];
+        var height = $(frame_array[i]).height();
+        var calculate_new_background_y_value = Math.round(-(height/2 + scroll_position) * inertia);
+
+        $(frame_array[i]).css({"background-position-y": adjustment[i] + calculate_new_background_y_value + 'px'});
+    }
+
+    toggle_logo(scroll_position);
 });
 
 $('#no-script').remove();
+
+assign_button_click_events();
+
+reposition_nav();
