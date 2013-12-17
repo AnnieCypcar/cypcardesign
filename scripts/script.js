@@ -30,19 +30,19 @@ var assign_button_click_events = function () {
 
 function toggle_logo(scroll_position) {
     if (scroll_position > 1312 && scroll_position < 4885) {
-        switchToDarkLogo();
+        switch_to_dark_logo();
         return false;
     }
-    switchToLightLogo();
+    switch_to_light_logo();
 }
 
-function switchToLightLogo() {
+function switch_to_light_logo() {
     if ($('.light_logo').hasClass('off') && $('.dark_logo').hasClass('on')) {
         $('.light_logo, .dark_logo').toggleClass('on').toggleClass('off');
     }
 }
 
-function switchToDarkLogo() {
+function switch_to_dark_logo() {
     if ($('.light_logo').hasClass('on') && $('.dark_logo').hasClass('off')) {
         $('.light_logo, .dark_logo').toggleClass('on').toggleClass('off');
     }
