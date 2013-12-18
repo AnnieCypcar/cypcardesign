@@ -83,32 +83,40 @@ function scroll_to (element, to, duration) {
     animate_scroll();
 }
 
+var set_new_background_y_position = function () {
+    var frame_array = $('.frame');
+    var scroll_position = $(window).scrollTop();
+
+    var calculate_new_background_y_value = function () {
+        var scroll_position = $(window).scrollTop(),
+            inertia = 0.5,
+            new_background_y_value = Math.round(-scroll_position * inertia);
+
+        return new_background_y_value;
+    };
+
+    //fine tune background image placement
+    for (var i = 0; i < frame_array.length; i++) {
+        var adjustment = [
+            0,
+            560,
+            1100,
+            1500,
+            2100,
+            2600
+        ];
+        
+        $(frame_array[i]).css({"background-position-y": adjustment[i] + calculate_new_background_y_value() + 'px'});
+    }
+    toggle_logo(scroll_position);
+};
+
 $(window).resize(function(){
     reposition_nav();
 });
 
 $(window).on('scroll', function(){
-    var scroll_position = $(window).scrollTop();
-    var inertia = 0.5;
-    var frame_array = $('.frame');
-
-    //fine tune background image placement
-    for (var i = 0; i < frame_array.length; i++) {
-        var adjustment = [
-            334,
-            800,
-            1400,
-            1800,
-            2400,
-            2800
-        ];
-        var height = $(frame_array[i]).height();
-        var calculate_new_background_y_value = Math.round(-(height/2 + scroll_position) * inertia);
-
-        $(frame_array[i]).css({"background-position-y": adjustment[i] + calculate_new_background_y_value + 'px'});
-    }
-
-    toggle_logo(scroll_position);
+    set_new_background_y_position();
 });
 
 $('#no-script').remove();
