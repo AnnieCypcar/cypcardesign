@@ -93,12 +93,11 @@ var scroll_position = window.scrollY,
     ticking = false;
 
 var set_new_background_y_position = function () {
-    var frame_array = $('.frame'),
-        ticking = false;
+    scroll_position = window.scrollY;
+    var frame_array = $('.frame');
 
     var calculate_new_background_y_value = function () {
-        var scroll_position = $(window).scrollTop(),
-            inertia = 0.5,
+        var inertia = 0.5,
             new_background_y_value = Math.round(-scroll_position * inertia);
 
         return new_background_y_value;
@@ -118,25 +117,21 @@ var set_new_background_y_position = function () {
         $(frame_array[i]).css({"background-position-y": adjustment[i] + calculate_new_background_y_value() + 'px'});
     }
     toggle_logo(scroll_position);
+    ticking = false;
 };
 
 $(window).resize(function(){
     reposition_nav();
 });
 
-function onScroll() {
-    set_new_background_y_position();
-    requestTick();
-}
-
-function requestTick() {
+function request_tick() {
     if(!ticking) {
         requestAnimationFrame(set_new_background_y_position);
         ticking = true;
     }
 }
 
-window.addEventListener('scroll', onScroll, false);
+window.addEventListener('scroll', request_tick, false);
 
 $('#no-script').remove();
 
