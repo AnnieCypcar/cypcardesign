@@ -131,7 +131,9 @@ function request_tick() {
     }
 }
 
-window.addEventListener('scroll', request_tick, false);
+$(window).on('scroll', function () {
+    request_tick();
+});
 
 $('#no-script').remove();
 
