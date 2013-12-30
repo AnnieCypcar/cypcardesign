@@ -61,10 +61,16 @@ function scroll_to (element, to, duration) {
     //  t = current time, b = start value, c = change in value, d = duration
     var math_easing = function (t, b, c, d) {
         t /= d/2;
-        if (t < 1) return c/2 * t * t + b;
+
+        if (t < 1) {
+            return c/2 * t * t + b;
+        }
+
         t --;
+
         return -c/2 * (t * (t - 2) - 1) + b;
     };
+
     var start = element.scrollTop,
         change = to - start,
         current_time = 0,
@@ -83,9 +89,12 @@ function scroll_to (element, to, duration) {
     animate_scroll();
 }
 
+var scroll_position = window.scrollY,
+    ticking = false;
+
 var set_new_background_y_position = function () {
-    var frame_array = $('.frame');
-    var scroll_position = $(window).scrollTop();
+    var frame_array = $('.frame'),
+        ticking = false;
 
     var calculate_new_background_y_value = function () {
         var scroll_position = $(window).scrollTop(),
@@ -115,9 +124,19 @@ $(window).resize(function(){
     reposition_nav();
 });
 
-$(window).on('scroll', function(){
+function onScroll() {
     set_new_background_y_position();
-});
+    requestTick();
+}
+
+function requestTick() {
+    if(!ticking) {
+        requestAnimationFrame(set_new_background_y_position);
+        ticking = true;
+    }
+}
+
+window.addEventListener('scroll', onScroll, false);
 
 $('#no-script').remove();
 
