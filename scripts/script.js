@@ -18,7 +18,7 @@ var assign_button_click_events = function () {
     var scroll_on_click = function () {
         var selected_button_index = $('nav li').index(this);
         
-        scroll_to(document.body, navButtonYValue[selected_button_index], 1250);
+        scroll_to(window, navButtonYValue[selected_button_index], 1250);
 
         return false;
     };
@@ -71,7 +71,7 @@ function scroll_to (element, to, duration) {
         return -c/2 * (t * (t - 2) - 1) + b;
     };
 
-    var start = element.scrollTop,
+    var start = element.pageYOffset,
         change = to - start,
         current_time = 0,
         increment = 20;
@@ -79,8 +79,8 @@ function scroll_to (element, to, duration) {
     var animate_scroll = function () {
         current_time += increment;
         var val = math_easing(current_time, start, change, duration);
-        element.scrollTop = val;
-
+        window.scrollTo(0,val);
+        // console.log(current_time + ' ' + start + ' ' + change + ' ' + duration);
         if (current_time < duration) {
             setTimeout(animate_scroll, increment);
         }
@@ -114,7 +114,7 @@ var set_new_background_y_position = function () {
             2600
         ];
         
-        $(frame_array[i]).css({"background-position-y": adjustment[i] + calculate_new_background_y_value() + 'px'});
+        $(frame_array[i]).css({"background-position-y": adjustment[i] + calculate_new_background_y_value() + 'px'});   
     }
     toggle_logo(scroll_position);
     ticking = false;
