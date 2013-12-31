@@ -89,12 +89,10 @@ function scroll_to (element, to, duration) {
     animate_scroll();
 }
 
-var scroll_position = window.scrollY,
-    ticking = false;
 
 var set_new_background_y_position = function () {
-    scroll_position = window.scrollY;
-    var frame_array = $('.frame');
+    var scroll_position = window.scrollY,
+        frame_array = $('.frame');
 
     var calculate_new_background_y_value = function () {
         var inertia = 0.5,
@@ -119,22 +117,14 @@ var set_new_background_y_position = function () {
     
     }
     toggle_logo(scroll_position);
-    ticking = false;
 };
 
 $(window).resize(function(){
     reposition_nav();
 });
 
-function request_tick() {
-    if(!ticking) {
-        requestAnimationFrame(set_new_background_y_position);
-        ticking = true;
-    }
-}
-
 $(window).on('scroll', function () {
-    request_tick();
+    set_new_background_y_position();
 });
 
 $('#no-script').remove();
