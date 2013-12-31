@@ -90,7 +90,7 @@ function scroll_to (element, to, duration) {
 }
 
 
-var set_new_background_y_position = function () {
+var set_new_background_y_position = function (e) {
     var scroll_position = window.scrollY,
         frame_array = $('.frame');
 
@@ -125,6 +125,8 @@ $(window).resize(function(){
 
 $(window).on('scroll', function () {
     set_new_background_y_position();
+
+    return false;
 });
 
 $('#no-script').remove();
