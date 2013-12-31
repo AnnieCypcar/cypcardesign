@@ -113,8 +113,10 @@ var set_new_background_y_position = function () {
             2100,
             2600
         ];
+        var adjusted_y_value = adjustment[i] + calculate_new_background_y_value();
         
-        $(frame_array[i]).css({"background-position-y": adjustment[i] + calculate_new_background_y_value() + 'px'});   
+        $(frame_array[i]).css({"backgroundPosition": '50% ' + adjusted_y_value + 'px'});
+    
     }
     toggle_logo(scroll_position);
     ticking = false;

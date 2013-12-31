@@ -146,8 +146,9 @@ div.light_logo.on {
     display: block;
 }
 
+
 #intro{
-	background: url(http://cypcardesign.com/images/cypcar_01.jpg) 80% 0 no-repeat fixed;
+	background: url(http://cypcardesign.com/images/cypcar_01.jpg) 50% 0 no-repeat fixed;
 	height: 1336px;
 	margin: 0 auto;
 	overflow: hidden;
