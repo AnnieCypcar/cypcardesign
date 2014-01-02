@@ -58,6 +58,16 @@ function reposition_nav () {
 }
 
 function scroll_to (element, to, duration) {
+    var rAF = (function(){
+          return  window.requestAnimationFrame       || 
+                  window.webkitRequestAnimationFrame || 
+                  window.mozRequestAnimationFrame    || 
+                  window.oRequestAnimationFrame      || 
+                  window.msRequestAnimationFrame     || 
+                  function( callback ){
+                    window.setTimeout(callback, 1000 / 60);
+                  };
+        })();
     //  t = current time, b = start value, c = change in value, d = duration
     var math_easing = function (t, b, c, d) {
         t /= d/2;
@@ -79,14 +89,17 @@ function scroll_to (element, to, duration) {
     var animate_scroll = function () {
         current_time += increment;
         var val = math_easing(current_time, start, change, duration);
+        
         window.scrollTo(0,val);
+
         // console.log(current_time + ' ' + start + ' ' + change + ' ' + duration);
         if (current_time < duration) {
-            setTimeout(animate_scroll, increment);
+            this.timeout_id = window.setTimeout(animate_scroll, increment);
         }
     };
 
-    animate_scroll();
+    window.clearTimeout(this.timeout_id);
+    rAF(animate_scroll);
 }
 
 
@@ -116,6 +129,7 @@ var set_new_background_y_position = function () {
         $(frame_array[i]).css({"backgroundPosition": '50% ' + adjusted_y_value + 'px'});
     
     }
+
     toggle_logo(scroll_position);
 };
 
